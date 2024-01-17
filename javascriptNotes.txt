@@ -1,0 +1,2 @@
+* The target property of an event object in JavaScript refers to the element that triggered the event. This can be useful for identifying which element an event originated from, which is often necessary when working with event listeners.
+For example, if a user clicks a button on a webpage, the 'click' is the event, and the button is the 'target' of that event. You can use the target property to access the element's properties and attributes, or to modify the element's properties.

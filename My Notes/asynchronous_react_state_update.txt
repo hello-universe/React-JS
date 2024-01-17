@@ -1,0 +1,24 @@
+* React state updates are asynchronous. This means that when you call setCurrent to update the state, the change doesn't happen instantly within the same function call. React batches state updates and applies them later, before re-rendering the component.
+* const handleDelete = () => {
+  if (current === '0') return;
+
+  // Use the callback function to log the updated value
+  setCurrent((prevCurrent) => {
+    const updatedCurrent = prevCurrent.slice(0, -1);
+    console.log(updatedCurrent);
+    return updatedCurrent;
+  });
+};
+In React, when you use the state-setting function (in this case, setCurrent), you can provide it with a function as an argument. This function will receive the previous state as its argument. This is what's referred to as the callback function.
+
+In the code above:
+
+setCurrent((prevCurrent) => { ... }); - Here, prevCurrent is a parameter of the callback function, and it represents the previous value of the state (current in this case).
+
+Inside the callback function, const updatedCurrent = prevCurrent.slice(0, -1); - This line creates a new variable updatedCurrent by taking the previous value of current and removing the last character with slice(0, -1). This is essentially simulating the deletion of the last character.
+
+console.log(updatedCurrent); - This line logs the updated value of current to the console. Note that it is logging the value after the deletion operation.
+
+return updatedCurrent; - This line returns the updated value from the callback function. This is important because the state-setting function uses this returned value to update the state.
+
+So, when you use the callback function with setCurrent, React takes care of passing the previous state (prevCurrent) to your function, and you can operate on it to compute the new state. This ensures that you are working with the latest state value when updating it.

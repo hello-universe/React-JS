@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="main">Hello</div>
+    <button id="btn">1</button>
+    <script>
+        const myDiv = document.getElementById('main');
+        console.log(myDiv);
+        myDiv.addEventListener('click', (e)=>{
+            console.log(e.target.textContent);
+        })
+        const myBtn = document.getElementById('btn');
+        myBtn.addEventListener('click', (e)=>{
+            console.log(e.target.textContent);
+        })
+        let str = "hello world";
+        console.log(str)
+        //This prints the string but the last character is removed
+        console.log(str.slice(0, -1))
+        //This prints the last character of the string
+        console.log("21+".slice(0, -1));
+        console.log(str.slice(-1));
+        let exp = '-5+3'
+        //eval() method evaluates a valid expression
+        let result = eval(exp)
+        console.log(result)
+        console.log(typeof(result))
+        console.log(eval('-5'))
+        let str2 = '560'
+        console.log(typeof(str2.slice(-1)));
+    </script>
+
+</body>
+</html>

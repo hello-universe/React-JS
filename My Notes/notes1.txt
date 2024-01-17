@@ -1,0 +1,8 @@
+* In React, a component is a piece of reusable code that represents a part of a user interface. Components are used to render, manage, and update the UI elements in your application. 
+* The export JavaScript keyword makes this function accessible outside of this file. 
+* The default keyword tells other files using your code that it’s the main function in your file.
+* The return JavaScript keyword means whatever comes after is returned as a value to the caller of the function. 
+* A JSX element is a combination of JavaScript code and HTML tags that describes what you’d like to display. 
+  Eg: <button className="square">X</button>;
+* React components need to return a single JSX element and not multiple adjacent JSX elements like    two  buttons. To fix this you can use Fragments (<> and </>) to wrap multiple adjacent JSX elements
+*  By default, all child components re-render automatically when the state of a parent component changes. 
