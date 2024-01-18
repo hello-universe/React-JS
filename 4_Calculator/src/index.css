@@ -68,3 +68,21 @@ body{
   color: #f24c00;
   font-weight: 500;
 }
+
+@media (max-width:470px){
+  .calculator{
+    width: 355px;
+    height: 585px;
+    padding: 7px;
+  }
+  .calculator button{
+    font-size: 28px;
+
+  }
+  .output .previous-operand{
+    font-size: 30px;
+  }
+  .output .current-operand{
+    font-size: 40px;
+  }
+}

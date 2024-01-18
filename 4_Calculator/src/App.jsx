@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 export default function App() {
   //Setting initial state for the current output as 0 and previous output as null
@@ -68,6 +68,23 @@ export default function App() {
       calculate(current+value);
     }
   }
+
+  //This function will be called on a keydown event
+    const handleKeyboardEvent = (event)=>{
+      const key = event.key;
+      if(key==='Enter') handleEqual();
+      else if(key==='Backspace') handleDelete();
+      else if(key==='0' || nums.includes(key) || ops.includes(key)) displayOnCurrent(key);
+}
+//This useEffect is used to add and remove the keydown event listener whenever a key is pressed
+    useEffect(()=>{
+      document.addEventListener('keydown', handleKeyboardEvent)
+      return ()=> document.removeEventListener('keydown', handleKeyboardEvent)
+    }, [current])
+    
+
+
+  
   return (
     <div className='calculator'>
       <div className="output">

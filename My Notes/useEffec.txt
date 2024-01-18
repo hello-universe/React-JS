@@ -1,0 +1,76 @@
+* useEffect is a React Hook that allows you to perform side effects in your functional components. Side effects can include data fetching, subscriptions, manually changing the DOM, and other operations that might cause an effect outside the scope of the component render.
+
+* The useEffect Hook takes two parameters:
+
+The first parameter is a function that contains the code for the side effect.
+The second parameter is an array of dependencies. It controls when the effect runs. If the dependencies array is empty, the effect runs once after the initial render. If there are dependencies, the effect runs when any of those dependencies change.
+
+1. Without a Second Parameter:
+If you don't provide a second parameter to useEffect, the effect will run after every render, including the initial render and subsequent re-renders. This is equivalent to having a dependencies array that includes every value used in the effect.
+javascript
+Copy code
+useEffect(() => {
+  // Effect code
+});
+
+When I refer to "every render" in the context of useEffect without a second parameter, I'm specifically talking about the render of the component to which the useEffect belongs. In the context of React, a "render" typically refers to the rendering of a React component.
+The effect will run after every render of the component to which it belongs. This includes both the initial render and subsequent re-renders caused by state or prop changes.
+
+It's important to note that it does not refer to the rendering of the entire window or any global rendering. The scope of useEffect is within the React component it is defined in. The effect will be triggered in response to changes within that component's lifecycle, such as state changes or prop updates.
+
+2. With an Empty Array ([]) as the Second Parameter:
+If you pass an empty array as the second parameter, the effect will only run once after the initial render. It will not run again for subsequent re-renders, unless the component is unmounted and remounted.
+javascript
+Copy code
+useEffect(() => {
+  // Effect code (runs once after the initial render)
+}, []);
+
+Return statement within useEffect
+
+Cleaning Up Side Effects:
+
+The return statement within useEffect is primarily used to define a cleanup function.
+This cleanup function is executed when:
+The component unmounts (is removed from the DOM).
+The effect runs again due to changes in its dependencies.
+It's crucial for preventing memory leaks, ensuring proper resource management, and avoiding unintended side effects.
+Common Use Cases:
+
+Removing Event Listeners:
+JavaScript
+useEffect(() => {
+  window.addEventListener('resize', handleResize);
+  return () => {
+    window.removeEventListener('resize', handleResize);
+  };
+}, []);
+Use code with caution. Learn more
+Canceling Timers:
+JavaScript
+useEffect(() => {
+  const intervalId = setInterval(doSomething, 1000);
+  return () => clearInterval(intervalId);
+}, []);
+Use code with caution. Learn more
+Unsubscribing from WebSockets or Subscriptions:
+JavaScript
+useEffect(() => {
+  const subscription = subscribeToData();
+  return () => subscription.unsubscribe();
+}, []);
+Use code with caution. Learn more
+Resetting States:
+JavaScript
+useEffect(() => {
+  // ... perform side effects
+  return () => setState(initialState); // Reset state on cleanup
+}, []);
+Use code with caution. Learn more
+Key Points:
+
+Optional: The return statement in useEffect is optional if no cleanup is needed.
+Timing: The cleanup function runs before the next effect execution or component unmount.
+Ensure Cleanup: It's essential to handle cleanup properly to avoid issues and maintain a clean application state.
+
+* It first cleanups i.e. removes the last time added listener and adds the new listener. 
