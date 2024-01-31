@@ -32,3 +32,43 @@ const newStatus ={
     ...aTask, isDone:true
 }
 console.log(newStatus)
+
+const arr3 = [
+    {
+        id: 1,
+        name: "Biscuit",
+        quantity: 0
+    },
+    {
+        id: 2,
+        name: "Chocolate",
+        quantity: 0
+    },
+    {
+        id: 3,
+        name: "Toffee",
+        quantity: 0
+    },
+    {
+        id: 4,
+        name: "Kurkure",
+        quantity: 0
+    }
+];
+const arr4 = [...arr3];
+const productToFind = {
+    id: 3,
+    name: "Toffee"
+}
+const result =   arr4.find((eachProduct)=>{
+    return eachProduct.id == productToFind.id;
+})
+console.log(result)
+const newProductToFind = {
+    ...productToFind, quantity: 1
+}
+newProductToFind.quantity += 1
+let arr5 = [...arr3, newProductToFind]
+console.log(arr3)
+// console.log(newProductToFind)
+

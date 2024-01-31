@@ -1,0 +1,42 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+nav ul{
+  list-style: none;
+  font-size: 20px;
+  margin: 15px;
+}
+nav ul li a{
+  text-decoration: none;
+}
+.card{
+  display: flex;
+  flex-direction: column;
+}
+.home{
+  width: 90%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 20%);
+  justify-content: center;
+  gap: 30px;
+}
+.cart table{
+  width: 100%;
+  border-spacing: 50px;
+}
+.cart table th{
+  font-size: 20px;
+}
+.cart table tr td>img{
+  width: 50%;
+  height: auto;
+  display: block;
+  margin: auto;
+}
+.cart table tr td>svg{
+  cursor: pointer;
+}
