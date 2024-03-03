@@ -1,0 +1,21 @@
+The input elements with type="number" in HTML still return their values as strings in JavaScript. This behavior is due to the fact that the value property of an input element always returns a string, regardless of the specified type.
+
+So, even though you've set the type attribute to "number," when you retrieve the value , the values are treated as strings.
+
+To work with these values as numbers, you need to explicitly convert them to numeric types using functions like parseInt or the unary plus operator (+), as demonstrated in the previous code snippet. This conversion ensures that you're performing arithmetic operations with numeric values rather than concatenating strings.
+
+Eg: const val1 = parseInt(initial_range.current.value, 10);
+    const val2 = parseInt(final_range.current.value, 10);
+
+The second parameter in the parseInt function
+
+The , 10 in parseInt is the radix or base parameter. It specifies the base of the numeral system to be used for parsing. In JavaScript, numbers can be represented in various bases such as base 10 (decimal), base 16 (hexadecimal), base 8 (octal), and base 2 (binary).
+
+The parseInt function takes two parameters:
+
+The string to be converted to an integer.
+The radix (optional) that represents the base of the numeral system. If this argument is omitted, JavaScript assumes the following:
+If the string begins with "0x" or "0X", it is parsed as a hexadecimal (base 16) value.
+If the string begins with "0", it is parsed as an octal (base 8) value.
+Otherwise, it is parsed as a decimal (base 10) value.
+In your case, , 10 is explicitly provided to ensure that the string is parsed as a decimal number. It's a good practice to include the radix parameter to avoid unexpected behavior, especially when dealing with user input.

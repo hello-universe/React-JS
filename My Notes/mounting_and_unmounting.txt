@@ -1,0 +1,27 @@
+In React, mounting and unmounting refer to the processes of adding and removing components from the Document Object Model (DOM), the tree structure that represents the web page.
+
+Here's a breakdown of each concept:
+
+Mounting:
+
+When a component is created and rendered for the first time, it's said to be "mounted."
+React inserts the component's elements into the actual DOM, making them visible to the user.
+This is when lifecycle methods like useEffect (with an empty dependency array) or the older componentDidMount are typically invoked.
+It's the ideal time to perform actions that require DOM access, such as:
+Setting up event listeners
+Fetching data from external APIs
+Manipulating native DOM elements directly
+Unmounting:
+
+When a component is removed from the DOM, it's said to be "unmounted."
+This can happen due to:
+User navigation to a different page
+Conditional rendering that no longer includes the component
+Parent component unmounting
+React removes the component's elements from the DOM, making them invisible and inaccessible.
+The useEffect hook's cleanup function (if provided) or the older componentWillUnmount method are called during unmounting.
+It's crucial to use this stage to clean up resources and prevent potential issues, such as:
+Removing event listeners
+Canceling timers or intervals
+Cleaning up subscriptions or data connections
+Clearing cached data or temporary state

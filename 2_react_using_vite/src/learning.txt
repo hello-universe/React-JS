@@ -1,0 +1,64 @@
+* React component names must always start with a capital letter, while HTML tags must be lowercase.
+* JSX is stricter than HTML. You have to close tags like <br />. Your component also can’t return multiple JSX tags. You have to wrap them into a shared parent, like a <div>...</div> or an empty <>...</> wrapper.
+* In React, you specify a CSS class with className. It works the same way as the HTML class attribute.
+* JSX lets you put markup into JavaScript. Curly braces let you “escape back” into JavaScript so that you can embed some variable from your code and display it to the user. For example, this will display user.name:
+
+return (
+  <h1>
+    {user.name}
+  </h1>
+);
+
+* In React, there is no special syntax for writing conditions. Instead, you’ll use the same techniques as you use when writing regular JavaScript code. For example, you can use an if statement to conditionally include JSX:
+
+let content;
+if (isLoggedIn) {
+  content = <AdminPanel />;
+} else {
+  content = <LoginForm />;
+}
+return (
+  <div>
+    {content}
+  </div>
+);
+
+If you prefer more compact code, you can use the conditional ? operator. Unlike if, it works inside JSX:
+
+
+Explain
+<div>
+  {isLoggedIn ? (
+    <AdminPanel />
+  ) : (
+    <LoginForm />
+  )}
+</div>
+
+* You can respond to events by declaring event handler functions inside your components:
+
+function MyButton() {
+  function handleClick() {
+    alert('You clicked me!');
+  }
+
+  return (
+    <button onClick={handleClick}>
+      Click me
+    </button>
+  );
+}
+
+Notice how onClick={handleClick} has no parentheses at the end! Do not call the event handler function: you only need to pass it down. React will call your event handler when the user clicks the button.
+
+* To achieve a shared counter among multiple buttons, you need to lift the state up to a common ancestor of the buttons. This means that the state should be managed in the component that renders the buttons, and the state value and update function should be passed down to each button as a prop.
+
+**The function parameters should be wrapped in curly braces for object destructuring. 
+
+* Rows in JS array should have a unique key property and it helps ReactJS to find refrences to the appropriate DOM nodes and update only content inside them and not re-render the entire table or row
+There can be two methods to do this: 
+ 1. To provide the second argument in the map function. The second argument in the map function is the index so we can make it as a key
+ 2. We can have our custom key that is unique for each array element
+
+// In json every key is also embedded inside quotes
+//Json doesn't allow comments. We can write comments there by having some key and the comment can be written in the value

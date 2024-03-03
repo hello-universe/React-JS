@@ -1,0 +1,8 @@
+const MyComponent = (percent) => {
+  const cappedPercent = Math.min(Math.max(0, percent), 100)
+
+  return (
+    <div style={{ width: cappedPercent + "%" }}>
+    </div>
+  );
+};

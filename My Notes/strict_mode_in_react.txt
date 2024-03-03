@@ -1,0 +1,10 @@
+1. React 18's Strict Mode:
+
+If you're using React 18 or later, Strict Mode intentionally triggers an extra render during development to help catch potential issues. This means useEffect will run twice on mount in development, even with an empty dependency array.
+This behavior is only for development and won't happen in production builds.
+
+2. Dependency Array Handling:
+
+The empty dependency array [] in useEffect tells React to run the effect only once after the initial render.
+However, if any state or prop values used inside the effect change, it will run again.
+In this code, while the effect itself doesn't directly use any state or props, it indirectly relies on the resourceType state through the fetch URL.

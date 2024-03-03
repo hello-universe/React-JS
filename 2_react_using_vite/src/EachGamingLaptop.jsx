@@ -9,7 +9,7 @@ function EachGamingLaptop(props) {
     //Destructuring
     const {name, age, gender} = props;
   return (
-    <div className='flex gap-5 shadow-lg p-5  items-center border-2 border-black' >
+    <div className='flex gap-5 shadow-lg p-5  items-center border-2 border-black'>
         {/* <img src={image} alt="" />
         <div className="properties">
         <span className="name w-full block">{name}</span>

@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --red: #d01c28;
+  --gray: #2e2e2e;
+}
+nav{
+  width: 80%;
+  margin: auto;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0px;
+}
+nav  ul{
+  font-size: 18px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  font-weight: 500;
+}
+nav ul li{
+  cursor: pointer;
+}
+nav .login{
+  background-color: var(--red);
+  color: white;
+  padding: 8px 25px;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+.hero{
+  display: flex;
+  justify-content: center;
+  /* padding: 60px 0px; */
+  width: 75%;
+  margin: auto;
+  margin-top: 100px;
+}
+.hero .left, .hero .right{
+  flex: 1;
+}
+.hero .left {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.hero .left h1{
+  font-size: 105px;
+  font-weight: 800;
+  line-height: 110px;
+  text-align: left;
+}
+.hero .left p{
+  color: var(--gray);
+  font-weight: 500;
+  font-size: 18px;
+}
+.hero .left .details{
+  width: 75%;
+}
+.hero .left .buttons{
+  display: flex;
+  align-items: flex-start;
+  gap: 35px;
+}
+.hero .left .buttons .shop-now{
+  background-color: var(--red);
+  color: white;
+  font-size: 25px;
+  font-weight: 600;
+  padding: 8px 15px;
+  border: none;
+  cursor: pointer;
+}
+.hero .left .buttons .category{
+  font-size: 25px;
+  font-weight: 600;
+  padding: 8px 15px;
+  color: var(--gray);
+  cursor: pointer;
+}
+.hero .left .logos{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.hero .left .logos img{
+  width: 100%;
+  height: 100%;
+}
+.hero .right img{
+  width: 100%;
+  height: 100%;
+}

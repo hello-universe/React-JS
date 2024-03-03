@@ -1,0 +1,18 @@
+The createSlice function from Redux Toolkit is used to define the slice. It takes an object as an argument, which includes the name of the slice, the initial state, and the reducers for the slice.
+reducers: This is an object containing functions that handle different actions and update the state accordingly.
+
+dispatch ek reducer ko use krte hue store mai changes krta hai
+
+On a button or on any element when we have to pass some parameters to any function on onClick we generally do it using a callback function and not directly passing the parameter because then it will immediately execute. We generally provide reference on onClick rather than calling the function directly.
+Eg:
+    <button onClick= {dispatch(event)} >Click me</button>  //This is the wrong approach as the function will execute directly
+
+    <button onClick = {()=>dispatch(event)}> Click me </button> //This is the correct approach
+
+    //Or we can create a function and provide the reference of that function on onClick
+    //For example
+
+    function handleClick(){
+        dispatch(event);
+    }
+    <button onClick={handleClick}> Click Me</button>

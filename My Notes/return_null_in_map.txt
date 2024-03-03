@@ -1,0 +1,15 @@
+
+In the provided code snippet:
+
+javascript
+Copy code
+optionsArray.map((option) => {
+    option.current.classList.remove('correct');
+    option.current.classList.remove('wrong');
+    return null;
+})
+The return null; statement at the end of the map function serves a specific purpose. In JavaScript, the map function creates a new array by applying a given function to each element of the original array. The values returned from the function are used to populate the new array.
+
+In this case, the primary goal is to iterate over the optionsArray and remove the 'correct' and 'wrong' classes from each element using classList.remove. However, the map function expects a value to be returned for each element in the array.
+
+Since you are not interested in creating a new array or transforming the existing one, the return null; statement is added just to satisfy the requirement of map. It ensures that the map function produces an array of the same length as the original one, with each element set to null. This is a common pattern when using map solely for its iteration side effect and not for creating a new array.
