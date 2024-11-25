@@ -1,106 +1,151 @@
-import React, { useRef, useState } from 'react'
-import './Quiz.css'
-import { ques } from '../../assets/questions_for_quiz'
-
+import React, { useRef, useState } from "react";
+import "./Quiz.css";
+import { ques } from "../../assets/questions_for_quiz";
+import ChatInterface from "./ChatInterface";
 
 function Quiz() {
-  //This will manage the index of the question
+  const [selectedCategory, setSelectedCategory] = useState("General Knowledge");
   const [index, setIndex] = useState(0);
-  //This state will store the current question 
-  const [question, setQuestion] = useState(ques[index]);
-  //This state will store the number of correct questions
   const [score, setScore] = useState(0);
-  //This state will lock the remaining options once one of the option is clicked
   const [lock, setLock] = useState(false);
-  //This state will represent if all the questions are being displayed and its the time to display score
   const [result, setResult] = useState(false);
-  
-  //These refrences will target the each options li
-  let option1 = useRef(null);
-  let option2 = useRef(null);
-  let option3 = useRef(null);
-  let option4 = useRef(null);
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
-  const optionsArray = [option1, option2, option3, option4];
+  const filteredQuestions = ques.filter(
+    (question) => question.category === selectedCategory
+  );
 
-  //This function will be called when user clicks on any of the options
-  //The first argument is the element(or option) which is clicked
-  //The second argument is the answer number(1, 2, 3, 4)
-  const checkAns = (ele, ans)=>{
-    if(lock == false){
+  const [question, setQuestion] = useState(filteredQuestions[index] || null);
+  const optionsArray = [useRef(null), useRef(null), useRef(null), useRef(null)];
+
+  //To pass options as parameters
+  const options = [
+    question.option1,
+    question.option2,
+    question.option3,
+    question.option4,
+  ];
+
+  const checkAns = (ele, ans) => {
+    if (!lock) {
       setLock(true);
-      if(question.ans == ans){
-        ele.classList.add('correct');
-        setScore(score+1);
-      }
-      else{
-        ele.classList.add('wrong');
-        optionsArray[question.ans-1].current.classList.add('correct');   
+      if (question.ans === parseInt(ans)) {
+        ele.classList.add("correct");
+        setScore(score + 1);
+      } else {
+        ele.classList.add("wrong");
+        optionsArray[question.ans - 1].current.classList.add("correct");
       }
     }
-  }
+  };
 
-  //This function is triggered when the user clicks on next button
-  const handleNext = ()=>{
-    if(ques.length === (index+1)) setResult(true) ;
-  //This if condition prevents the user from moving to the next question  unless he/she has clicked on an option
-    if(lock==false) return ;
-    //This logic update the question index and the question in the screen
-    setIndex((prevIndex)=>{
-      let newIndex = prevIndex+1;
-      setQuestion(ques[newIndex]);
+  const handleNext = () => {
+    if (filteredQuestions.length === index + 1){
+      setResult(true);
+      return ;
+    } 
+    if (!lock) return;
+    setIndex((prevIndex) => {
+      const newIndex = prevIndex + 1;
+      setQuestion(filteredQuestions[newIndex] || null);
+      setIsChatOpen(false);
       return newIndex;
-    })
+    });
 
-    //Alternate way when we use let instead of const for index
-    // setIndex(++index)
-    // setQuestion(ques[index])
+    optionsArray.forEach((option) => {
+      option.current.classList.remove("correct");
+      option.current.classList.remove("wrong");
+    });
 
-    //This logic removes the .correct and .wrong class from the options list because it will be carry on
-    //from the previous question
-    optionsArray.map((option)=>{
-      option.current.classList.remove('correct');
-      option.current.classList.remove('wrong');
-      return null;
-    })
-    //We also need to set the lock back to false so that user can select any option in the next question
     setLock(false);
-  }
+  };
 
-  //This handles the logic of reset button
-  const handleReset = ()=>{
-    setIndex((prevIndex)=>{
-      let newIndex = 0;
-      setQuestion(ques[newIndex]);
-      return newIndex;
-    })
+  const handleReset = () => {
+    setIndex(0);
+    setScore(0);
     setLock(false);
     setResult(false);
+    setQuestion(filteredQuestions[0] || null);
+  };
+
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+    setIndex(0);
     setScore(0);
-  }
+    setLock(false);
+    setResult(false);
+    setQuestion(ques.filter((q) => q.category === category)[0]);
+  };
 
   return (
-    <div className='container'>
-        <h3>General Knowledge</h3>
-        <hr />
-        {result ? <>
-          <h2>You scored {score} out of {ques.length}</h2>
-          <button className='reset' onClick={handleReset}>Reset</button>
-        </> : <>
-        
-        <h2>{question.question}</h2>
-        <ul>
-            <li ref={option1} id='1' onClick={(ele)=>checkAns(ele.target, ele.target.id)}>{question.option1}</li>
-            <li ref={option2} id='2' onClick={(ele)=>checkAns(ele.target, ele.target.id)}>{question.option2}</li>
-            <li ref={option3} id='3' onClick={(ele)=>checkAns(ele.target, ele.target.id)}>{question.option3}</li>
-            <li ref={option4} id='4' onClick={(ele)=>checkAns(ele.target, ele.target.id)}>{question.option4}</li>
-        </ul>
-        <button className="next" onClick={handleNext}>Next</button>
-        <div className="index">{index+1} of {ques.length} questions</div>
-        </>}
-
+    <div className="main">
+      <div className="sidebar">
+        <h3>Topics</h3>
+        {["General Knowledge", "Operating System", "DBMS", "Computer Networks"].map(
+          (category) => (
+            <button
+              key={category}
+              className={`sidebar-button ${
+                selectedCategory === category ? "active" : ""
+              }`}
+              onClick={() => handleCategoryChange(category)}
+            >
+              {category}
+            </button>
+          )
+        )}
+      </div>
+      <div className="container">
+      <h3>{selectedCategory}</h3>
+      <hr />
+        {result ? (
+          <>
+            <h2>
+              You scored {score} out of {filteredQuestions.length}
+            </h2>
+            <button className="reset" onClick={handleReset}>
+              Reset
+            </button>
+          </>
+        ) : (
+          <>
+            <h2>{question.question}</h2>
+            <ul>
+              {question &&
+                [1, 2, 3, 4].map((i) => (
+                  <li
+                    key={i}
+                    ref={optionsArray[i - 1]}
+                    id={i}
+                    onClick={(ele) => checkAns(ele.target, ele.target.id)}
+                  >
+                    {question[`option${i}`]}
+                  </li>
+                ))}
+            </ul>
+            <button className="next" onClick={handleNext}>
+              Next
+            </button>
+            <div className="index">
+              {index + 1} of {filteredQuestions.length} questions
+            </div>
+            {!isChatOpen && (
+              <button id="explain" onClick={() => setIsChatOpen(true)}>
+                Explain
+              </button>
+            )}
+          </>
+        )}
+      </div>
+      {isChatOpen && (
+        <ChatInterface
+          onClose={() => setIsChatOpen(false)}
+          currentQuestion={question}
+          options={options} // Pass options here
+        />
+      )}
     </div>
-  )
+  );
 }
 
-export default Quiz
+export default Quiz;

@@ -1,7 +1,16 @@
+.main{
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
 .container{
-    position: absolute;
+    /* position: absolute;
     left: 50%;
-    transform: translate(-50%, 15%);
+    transform: translate(-50%, 15%); */
     color: #3e4449;
     width: 525px;
     background: white;
@@ -10,15 +19,15 @@
     gap: 20px;
     border: 1.5px solid #b4b4b4;
     border-radius: 20px;
-    padding: 35px 30px;
+    padding: 20px 15px;
     box-shadow: 10px 10px 8px #d3d6daef;
 }
 .container h3{
     font-size: 22px;
 }
 .container h2{
-    font-size: 26px;
-    font-weight: 900;
+    font-size: 22px;
+    font-weight: 800;
 }
 .container hr{
     height: 2px;
@@ -95,3 +104,61 @@
         font-size: 15px;
     }
 }
+
+#explain{
+    align-self: center;
+    padding: 13px 55px;
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+    background-color: #0077b6;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+/* #chat-interface{
+    position: relative;
+    top: 0;
+    right: 0;
+} */
+
+/* Sidebar styling */
+.sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 100vh;
+    border-right: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .sidebar h3 {
+    margin-bottom: 10px;
+    font-size: 25px;
+    color: #3e4449;
+  }
+  
+  .sidebar-button {
+    display: block;
+    width: 100%;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+  }
+  
+  .sidebar-button.active {
+    background-color: #0056b3;
+  }
+  
+  .sidebar-button:hover {
+    background-color: #0056b3;
+  }
