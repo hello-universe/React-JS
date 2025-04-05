@@ -1,0 +1,14 @@
+{
+  "name": "using-gemini-api",
+  "version": "1.0.0",
+  "description": "Testing gemini api key",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Amit Verma",
+  "license": "ISC",
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0"
+  }
+}

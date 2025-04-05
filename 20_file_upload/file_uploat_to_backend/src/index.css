@@ -1,0 +1,40 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.btn{
+  background-color: rebeccapurple;
+  padding: 4px 6px;
+  color: white;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+}
+/* form{
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+} */
+ .file-upload{
+    margin-top: 10px;
+    border: 2px solid black;
+    width: 50vw;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+.uploadBtn{
+  align-self: flex-start;
+  width: auto;
+  font-weight: 600;
+  border-radius: 5px;
+  padding: 3px 5px;
+  background-color: green;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
